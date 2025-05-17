@@ -2,13 +2,13 @@ package storage
 
 type Status struct {
 	Name         string
-	Keys         uint64
-	Size         uint64
-	DiskSize     uint64
-	LiveDiskSize uint64
+	Keys         int64
+	Size         int64
+	DiskSize     int64
+	LiveDiskSize int64
 }
 
-func (s *Status) GarbageDiskSize() uint64 {
+func (s *Status) GarbageDiskSize() int64 {
 	return s.DiskSize - s.LiveDiskSize
 }
 

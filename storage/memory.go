@@ -50,7 +50,7 @@ func (m *MemoryStorge) Status() *Status {
 	})
 	return &Status{
 		Name:         "memory",
-		Keys:         uint64(m.tree.Len()),
+		Keys:         int64(m.tree.Len()),
 		Size:         0,
 		DiskSize:     0,
 		LiveDiskSize: 0,

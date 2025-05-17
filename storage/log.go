@@ -82,13 +82,11 @@ func (l *Log) BuildKeyDir() (*KeyDir, error) {
 				}
 			}
 
-			// Read key
 			key := make([]byte, keyLen)
 			if _, err := io.ReadFull(r, key); err != nil {
 				return nil, nil, err
 			}
 
-			// Skip value
 			if valLoc != nil {
 				end := valLoc.end()
 				if end > fileLen {
@@ -105,7 +103,7 @@ func (l *Log) BuildKeyDir() (*KeyDir, error) {
 		switch {
 		case err == nil && valueLoc != nil:
 			keyDir.Set(key, *valueLoc)
-		case err == nil && valueLoc == nil:
+		case err == nil:
 			keyDir.Delete(key)
 		case errors.Is(err, io.ErrUnexpectedEOF):
 			fmt.Printf("Found incomplete entry at Offset %d, truncating file\n", offset)

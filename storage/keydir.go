@@ -38,6 +38,14 @@ func (k *KeyDir) Len() int {
 	return k.tree.Len()
 }
 
+func (k *KeyDir) Get(key []byte) (ValueLocation, bool) {
+	item := k.tree.Get(&BKV{Key: key}) // `KV`, `BKV`가 아니라면 정확히 맞춰야 해요
+	if item == nil {
+		return ValueLocation{}, false
+	}
+	return item.(*BKV).Value, true
+}
+
 func (k *KeyDir) Set(key []byte, value ValueLocation) {
 	k.tree.ReplaceOrInsert(&BKV{Key: append([]byte(nil), key...), Value: value})
 }

@@ -7,6 +7,4 @@ type Engine interface {
 	Set(key, value []byte) error
 	Status() (Status, error)
 	Scan(start, end []byte) ScanIterator
-	ScanDyn(start, end []byte) ScanIterator
-	ScanPrefix(prefix []byte) ScanIterator
 }

@@ -56,3 +56,20 @@ func (m *MemoryStorge) Status() *Status {
 		LiveDiskSize: 0,
 	}
 }
+
+func (m *MemoryStorge) Scan(start, end []byte) *BTreeScanIterator {
+	return NewBtreeScanIterator(m.tree, start, end)
+}
+
+// TODO: ScanPrefix is not implemented yet
+//func (m *MemoryStorge) ScanPrefix(prefix []byte) *BTreeScanIterator {
+//	var items []*KV
+//	m.tree.Ascend(func(item btree.Item) bool {
+//		kv := item.(*KV)
+//		if len(prefix) == 0 || (len(kv.Key) >= len(prefix) && string(kv.Key[:len(prefix)]) == string(prefix)) {
+//			items = append(items, kv)
+//		}
+//		return true
+//	})
+//	return &BTreeScanIterator{items: items, index: -1}
+//}

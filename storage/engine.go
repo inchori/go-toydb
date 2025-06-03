@@ -6,5 +6,5 @@ type Engine interface {
 	Get(key, value []byte) error
 	Set(key, value []byte) error
 	Status() (Status, error)
-	//TODO: ScanIterator
+	Scan(start, end []byte) ScanIterator
 }

@@ -2,7 +2,7 @@ package storage
 
 type EngineStatus struct {
 	Name         string
-	keys         uint64
+	Keys         uint64
 	Size         uint64
 	DiskSize     uint64
 	LiveDiskSize uint64
